@@ -3,58 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Top Down Horror</title>
+<title>Top Down Horror - Noche 1</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- MENÚ -->
 <div id="menu">
   <h1>Top Down Horror</h1>
+  <p class="subtitle">Supervive hasta las 6:00 AM</p>
   <button id="playBtn">Jugar</button>
   <button id="volumeBtn">Volumen: ON</button>
   <button id="exitBtn">Salir</button>
 </div>
 
-<!-- JUEGO -->
 <div id="game" class="hidden">
-
-  <!-- HUD -->
   <div id="hud">
-    <div id="energy">
-      <div id="energyBar"></div>
+    <div class="hud-block">
+      <span>Energía</span>
+      <div id="energy"><div id="energyBar"></div></div>
     </div>
-    <div id="clock">
-      <span id="clockText">00:00</span>
-    </div>
+    <div class="hud-block"><span id="nightText">Noche 1</span></div>
+    <div class="hud-block"><span id="clockText">12:00 AM</span></div>
   </div>
 
-  <!-- CAMARAS -->
+  <div id="controlPanel">
+    <button id="toggleDoorBtn">Puerta: ABIERTA</button>
+    <button id="toggleLightBtn">Luz: OFF</button>
+    <button id="backToMenu">Salir al menú</button>
+  </div>
+
   <div id="cameraScreen" class="hidden">
     <div id="cameraHeader">
       <button id="cam1Btn">Cámara 1</button>
       <button id="cam2Btn">Cámara 2</button>
       <button id="closeCamBtn">Cerrar</button>
     </div>
-    <div id="cameraView">
-      <p id="cameraText">Cámara 1</p>
-    </div>
+    <p id="cameraText">Cámara 1 - Comedor</p>
   </div>
 
-  <!-- MAPA -->
-  <div id="player"></div>
-  <div id="enemy"></div>
+  <div id="world">
+    <img id="mapImage" src="https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=1400&q=60" alt="Mapa top-down del instituto">
 
-  <div class="wall" id="wall1"></div>
-  <div class="wall" id="wall2"></div>
-  <div class="wall" id="wall3"></div>
-  <div class="wall" id="wall4"></div>
+    <div id="player"></div>
+    <div id="enemy"></div>
 
-  <div class="exit" id="exit"></div>
+    <div class="wall" id="wall1"></div>
+    <div class="wall" id="wall2"></div>
+    <div class="wall" id="wall3"></div>
+    <div class="wall" id="wall4"></div>
+    <div class="wall" id="wall5"></div>
+    <div class="wall" id="wall6"></div>
+    <div class="wall" id="wall7"></div>
+    <div class="wall" id="wall8"></div>
 
-  <!-- BOTÓN SALIR DENTRO DEL JUEGO -->
-  <button id="backToMenu">Salir</button>
+    <div class="stairs" id="stairsA">Escalera A</div>
+    <div class="stairs" id="stairsB">Escalera B</div>
 
+    <div class="exit" id="goal">Oficina segura</div>
+    <div id="door"></div>
+
+    <canvas id="lightCanvas"></canvas>
+  </div>
 </div>
 
 <script src="script.js"></script>

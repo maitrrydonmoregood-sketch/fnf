@@ -1,140 +1,185 @@
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background: #000;
-  color: white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+:root {
+  --ui-red: #ba2323;
+  --panel: rgba(16, 16, 16, 0.95);
 }
 
-.hidden { display:none; }
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top, #1b1b1b, #020202 60%);
+  color: white;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.hidden { display: none !important; }
 
 #menu {
-  text-align:center;
-  border:2px solid red;
-  padding:30px;
-  border-radius:15px;
-  background: rgba(20,20,20,0.9);
-  width:320px;
+  text-align: center;
+  width: min(90vw, 360px);
+  border: 2px solid var(--ui-red);
+  border-radius: 14px;
+  padding: 24px;
+  background: var(--panel);
 }
 
-#menu h1 {
-  font-size:36px;
-  margin-bottom:20px;
-  text-shadow:0 0 10px red;
+h1 {
+  margin: 0;
+  text-shadow: 0 0 12px var(--ui-red);
+}
+
+.subtitle {
+  margin: 8px 0 18px;
+  opacity: .8;
 }
 
 button {
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  font-size:18px;
-  background:#111;
-  color:white;
-  border:2px solid red;
-  border-radius:10px;
-  cursor:pointer;
-  text-transform:uppercase;
+  width: 100%;
+  padding: 11px;
+  margin: 7px 0;
+  font-size: 16px;
+  color: #fff;
+  border: 2px solid var(--ui-red);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #141414;
+  text-transform: uppercase;
 }
-
-button:hover { background:#330000; }
+button:hover { background: #300; }
 
 #game {
-  width:600px;
-  height:400px;
-  background:#000;
-  position:relative;
-  border:2px solid red;
-  overflow:hidden;
+  width: min(95vw, 1100px);
+  aspect-ratio: 16 / 9;
+  border: 2px solid var(--ui-red);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
 }
 
-#player {
-  width:30px;
-  height:30px;
-  background: green;
-  position:absolute;
-  z-index:3;
+#world {
+  width: 1600px;
+  height: 900px;
+  position: absolute;
+  transform-origin: top left;
 }
 
-#enemy {
-  width:30px;
-  height:30px;
-  background:red;
-  position:absolute;
-  z-index:3;
-}
-
-.wall {
-  position:absolute;
-  background:#222;
-  border:2px solid red;
-  z-index:2;
-}
-
-.exit {
-  position:absolute;
-  width:40px;
-  height:40px;
-  background:#00bfff;
-  border:2px solid #00ffff;
-  z-index:3;
+#mapImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) brightness(0.5);
 }
 
 #hud {
-  position:absolute;
-  top:10px;
-  left:10px;
-  z-index:10;
-  display:flex;
-  justify-content:space-between;
-  width: calc(100% - 20px);
+  position: absolute;
+  inset: 10px 10px auto;
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.hud-block {
+  border: 1px solid var(--ui-red);
+  background: rgba(0, 0, 0, 0.65);
+  padding: 8px 10px;
+  min-width: 130px;
 }
 
 #energy {
-  width:200px;
-  height:20px;
-  background:#111;
-  border:2px solid red;
+  width: 180px;
+  height: 16px;
+  margin-top: 5px;
+  border: 1px solid #555;
+  background: #131313;
 }
 
 #energyBar {
-  width:100%;
-  height:100%;
-  background:lime;
-  transition: width 0.2s;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #e53131, #f0d620 45%, #2de02d 85%);
 }
 
-#clock {
-  font-size:20px;
+#controlPanel {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 30;
+  width: min(240px, 45vw);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--ui-red);
+  padding: 8px;
 }
 
 #cameraScreen {
-  position:absolute;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.9);
-  z-index:20;
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0,0,0,0.94);
+  padding-top: 20px;
+  text-align: center;
 }
 
 #cameraHeader {
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:10px;
+  width: min(420px, 85%);
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
 }
 
-#cameraView {
-  margin-top:30px;
-  text-align:center;
-  color:white;
+#player, #enemy {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 15;
+  border: 2px solid #fff;
 }
 
-#backToMenu {
-  position:absolute;
-  bottom:10px;
-  right:10px;
-  padding:10px;
-  z-index:50;
+#player { background: #1dcb4a; }
+#enemy { background: #d72828; }
+
+.wall {
+  position: absolute;
+  background: rgba(40,40,40,0.01);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  z-index: 12;
+}
+
+.stairs {
+  position: absolute;
+  z-index: 12;
+  padding: 3px 8px;
+  font-size: 11px;
+  background: rgba(31, 80, 180, 0.45);
+  border: 1px solid #8cb0ff;
+}
+
+#goal {
+  position: absolute;
+  z-index: 12;
+  padding: 5px 8px;
+  font-size: 12px;
+  color: #fff;
+  border: 1px solid #2ac0f5;
+  background: rgba(26, 72, 89, .7);
+}
+
+#door {
+  position: absolute;
+  z-index: 14;
+  background: rgba(114, 170, 255, 0.25);
+  border: 1px solid #8eb0ff;
+}
+
+#lightCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
 }
